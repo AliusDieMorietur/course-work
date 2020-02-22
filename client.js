@@ -12,7 +12,7 @@ const connect = () => {
 
 socket.on('data', data => {
   console.log('recieved from server');
-  console.log(data);
+  console.log(data.toString());
 });
 
 socket.on('close', () => {
@@ -26,10 +26,6 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-const sendInf = string => {
-
-}
-
 const commands = {
   exit: () => {
     socket.destroy();
@@ -37,10 +33,20 @@ const commands = {
     process.exit(0);
   },
   help: () => {
-    for (let key in commands) console.log(` <${key}>`);
+    for (let key in commands) console.log(` <${key}> `);
   },
   about: () => {
     console.log('Course work by Ilja Kaminskij IP-95');
+  },
+  send: () => {
+    console.log('enter something');
+    rl.question('> ', (input) => {
+      socket.write(input);
+      requestCommand();
+    });
+  },
+  get: () => {
+    socket.write('get');
   }
 }
 
