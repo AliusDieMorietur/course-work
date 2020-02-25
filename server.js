@@ -4,29 +4,28 @@ const net = require('net');
 const fs = require('fs');
 
 const DATABASE = './database.json';
+const logs = './logs.txt';
 
-const save = input => {
-  fs.appendFile('database.json', JSON.stringify(input), err => {
+const log = input => {
+  fs.appendFile('logs.txt', JSON.stringify(input), err => {
     if (err) throw err;
   });
 }
 
-const sendOnClient = socket => {
-  fs.readFile(DATABASE, (err, data) => {
-    if (err) throw err;
-    socket.write(data);
-  });
-}
+const commands = {
+  get: socket => {
+    fs.readFile(logs, (err, data) => {
+      if (err) throw err;
+      socket.write(data);
+    });
+  },
+};
 
 const server = net.createServer(socket => {
   socket.on('data', data => {
     console.log('recieved from client');
-    console.log(data.toString());
-    if (data.toString() === 'get') {
-      sendOnClient(socket);
-      return;
-    }
-    save(data);
+    commands[data.toString()] ? commands[data.toString()](socket) : console.log(data.toString());
+    log({ event: data.toString(), date: new Date() });
     console.log('saved');
   });
   

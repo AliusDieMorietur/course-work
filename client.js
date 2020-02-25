@@ -6,18 +6,25 @@ const socket = new net.Socket();
 
 const connect = () => {
   console.log('connected', socket.remotePort);
-  socket.write('It`s Ok');
+  socket.write('connection established');
   requestCommand();
 }
 
 socket.on('data', data => {
   console.log('recieved from server');
   console.log(data.toString());
+  requestCommand();
 });
 
 socket.on('close', () => {
   console.log('connection closed');
 });
+
+socket.on('error', err => {
+  socket.destroy();
+  console.log(err);
+  process.exit(1);
+})
 
 socket.connect(8000, '127.0.0.1', connect);
 
@@ -47,6 +54,7 @@ const commands = {
   },
   get: () => {
     socket.write('get');
+    requestCommand();
   }
 }
 
