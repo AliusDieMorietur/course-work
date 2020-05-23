@@ -5,7 +5,8 @@ const http = require('http');
 const path = require('path');
 const Websocket = require('websocket').server;
 const STATIC_PATH = path.join(process.cwd(), '../static');
-const API_PATH = '../api';
+const API_PATH = '../api/';
+const lib = require('../lib/lib.js');
 
 const MIME_TYPES = {
   html: 'text/html; charset=UTF-8',
@@ -22,6 +23,7 @@ const api = new Map();
 const cacheFile = name => {
   const filePath = API_PATH + name;
   const key = path.basename(filePath, '.js');
+  console.log(filePath,key, name);
   try {
     const libPath = require.resolve(filePath);
     delete require.cache[libPath];
@@ -52,27 +54,27 @@ const watch = path => {
 cacheFolder(API_PATH);
 watch(API_PATH);
 
-const httpError = (res, status, message) => {
-  res.statusCode = status;
-  res.end(`"${message}"`);
-};
+// const httpError = (res, status, message) => {
+//   res.statusCode = status;
+//   res.end(`"${message}"`);
+// };
 
-const serveFile = name => {
-  const filePath = path.join(STATIC_PATH, name);
-  if (!filePath.startsWith(STATIC_PATH)) return null;
-  return fs.createReadStream(filePath);
-};
+// const serveFile = name => {
+//   const filePath = path.join(STATIC_PATH, name);
+//   if (!filePath.startsWith(STATIC_PATH)) return null;
+//   return fs.createReadStream(filePath);
+// };
 
-const receiveArgs = async req => new Promise(resolve => {
-  const body = [];
-  req.on('data', chunk => {
-    body.push(chunk);
-  }).on('end', async () => {
-    const data = body.join('');
-    const args = JSON.parse(data);
-    resolve(args);
-  });
-});
+// const receiveArgs = async req => new Promise(resolve => {
+//   const body = [];
+//   req.on('data', chunk => {
+//     body.push(chunk);
+//   }).on('end', async () => {
+//     const data = body.join('');
+//     const args = JSON.parse(data);
+//     resolve(args);
+//   });
+// });
 
 
 // http.createServer(async (req, res) => {
@@ -101,9 +103,8 @@ const receiveArgs = async req => new Promise(resolve => {
 
 const server = http.createServer(async (req, res) => {
   const url = req.url === '/' ? '/index.html' : req.url;
-  // const [file] = url.substring(1).split('/');
   let path = `../static${url}`;
-  // console.log(url, path)
+  console.log(url);
   try {
     const data = await fs.promises.readFile(path);
     const splitted = url.split('.');
@@ -117,6 +118,8 @@ const server = http.createServer(async (req, res) => {
   }
 }).listen(8000);
 
+// const server = lib.serveStatic('/index.html', '../static', 8000, MIME_TYPES);
+
 const ws = new Websocket({
   httpServer: server,
   autoAcceptConnections: false
@@ -124,13 +127,11 @@ const ws = new Websocket({
 
 ws.on('request', req => {
   const connection = req.accept('', req.origin);
-  // console.log('Connected ' + connection.remoteAddress);
+  console.log('Connected ' + connection.remoteAddress);
   connection.on('message', async message => {
     const dataName = message.type + 'Data';
     const data = message[dataName];
-    // console.log(dataName, data);
-    console.log(path.extname(dataName));
-    // console.log('Received: ' + data);
+    console.log('Received: ' + data);
     const obj = JSON.parse(data);
     const { method, args } = obj;
     const fn = api.get(method);

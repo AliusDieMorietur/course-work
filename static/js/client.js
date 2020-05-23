@@ -61,8 +61,8 @@ window.addEventListener('load', () => {
   console.log('The page has loaded');
   registerServiceWorker('./worker.js');
   let request = indexedDB.open('ex', 2);
-  request.onupgradeneeded = function(event) {
-    create(event);
+  // request.onupgradeneeded = function(event) {
+  //   create(event);
     // var db = event.target.result; 
     // var objectStore = db.createObjectStore("customers", { keyPath: "ssn" });
     // objectStore.createIndex("name", "name", { unique: false });
@@ -70,16 +70,16 @@ window.addEventListener('load', () => {
     // for (var i in customerData) {
     //   objectStore.add(customerData[i]);
     // }
-  };
-  request.onerror = function(event) {
-    console.log(event);
-  };
-  request.onsuccess = function(event) {
-    console.log(event.target.result);
-  };
-  setTimeout(function() {
-    console.log('req',request.result);
-}, 100);
+  // };
+//   request.onerror = function(event) {
+//     console.log(event);
+//   };
+//   request.onsuccess = function(event) {
+//     console.log(event.target.result);
+//   };
+//   setTimeout(function() {
+//     console.log('req',request.result);
+// }, 100);
 });
 
 window.addEventListener('beforeinstallprompt', event => {
