@@ -28,9 +28,9 @@ fn execute(key: &str) {
   match key {
     "init" => {
       println!("Creating config...");
-      println!("Write your own template! Then execute command <build>");
       create_file("template.cfg").expect("Something went wrong while creating config...");
       println!("Completed successfully!");
+      println!("Write your own template! Then execute command <scv build>");
     },
     "build" => {
       let mut paths: Vec<String> = vec![];

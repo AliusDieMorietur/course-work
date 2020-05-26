@@ -1,6 +1,6 @@
 'use strict';
 
-importScripts('lib.js');
+importScripts('./js/app-lib.js');
 
 const version = 'v1';
 
@@ -11,25 +11,9 @@ const files = [
   '/favicon.ico',
   '/favicon.png',
   '/manifest.json',
+  '/js/app-lib.js',
 ];
 
-installWorker(files, version);
-interceptFecth(version);
-
-// self.addEventListener('install', event => event.waitUntil(caches.open(version).then(cache => cache.addAll(files))));
-
-// self.addEventListener('fetch', event => {
-//   event.respondWith(caches.match(event.request).then(response => {
-//     if (response !== undefined) return response;
-//     return fetch(event.request).then(response => {
-//       const responseClone = response.clone();
-//       caches.open(version).then(cache => {
-//         cache.put(event.request, responseClone);
-//       });
-//       return response;
-//     }).catch(error => {
-//       throw error;
-//     });
-//   }));
-// });
+WorkerTools.installWorker(files, version);
+WorkerTools.interceptFecth(version);
 

@@ -8,12 +8,21 @@ lang="en">
   <link rel="manifest" href="./manifest.json">
   <link rel="shortcut icon" href="./assets/greek.ico" type="image/vnd.microsoft.icon">
   <link rel="icon" href="./assets/greek.ico" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <h1>HELLO FROM ANOTHER WORLD!</h1>
-  <button id="btn">CLICK</button>
-  <div id="view"></div>
-  <script src="./lib.js"></script>
+  <div class="wrapper">
+    <h2>Get your random number</h2>
+    <ul>
+      <li><label for="">Min: </label><input type="text" value="1" id="min"></li>
+      <li><label for="">Max: </label><input type="text" value="100" id="max"></li>
+    </ul>
+    <button id="get">Get</button>
+    <label for="" id="view">Your number: </label>
+    <div id="numbers"></div>
+  </div>
+  <script src="./js/app-lib.js"></script>
   <script src="./js/client.js"></script>
+  <!-- <script src="./js/test-client.js"></script> -->
 </body>
 </html>
