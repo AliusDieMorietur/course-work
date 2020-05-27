@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/AliusDieMorietur/course-work#readme",
   "dependencies": {
+    "eslint": "^7.1.0",
     "websocket": "^1.0.31"
   }
 }

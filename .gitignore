@@ -2,6 +2,7 @@ node_modules
 api
 test
 scv
+.eslintrc.json
 package-lock.json
 static/js/test-client.js
 server/test-server.js
