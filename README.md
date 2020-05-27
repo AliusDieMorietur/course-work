@@ -6,7 +6,7 @@ The current state of PWA is poor. Many problems, many flaws, not convenient synt
 - [x] Basic methods for indexeddb
 - [ ] A large set of different functions for working with data inside indexeddb objects
 ## Requirements
-* Provided http-server to serve static or other http-server which can handle this task
+* http-server to serve static
 ## Usage
 # Scv
 Created to facilitate the creation of PWA projects, it can also create any file hierarchy you need in your custom projects
