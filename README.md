@@ -12,10 +12,11 @@ The current state of PWA is poor. Many problems, many flaws, not convenient synt
 * http-server to serve static
 
 ## Usage
-1. Start your server "node server.js"
+1. Start your server
 2. Move to localhost:8000
 3. Enjoy basic PWA experience
 
-# Scv
-Created to facilitate the creation of PWA projects, it can also create any file hierarchy you need in your custom projects
+# Scv (optional)
+Helps to create PWA template
+https://github.com/AliusDieMorietur/scv
 
