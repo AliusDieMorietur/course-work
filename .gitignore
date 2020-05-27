@@ -2,7 +2,8 @@ node_modules
 api
 test
 package-lock.json
-scavanger/target
-scavanger/Cargo.lock
+scv/target
+scv/Cargo.lock
+scv/template.cfg
 static/js/test-client.js
 server/test-server.js

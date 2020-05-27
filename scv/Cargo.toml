@@ -1,5 +1,5 @@
 [package]
-name = "scavanger"
+name = "scv"
 version = "0.1.0"
 authors = ["AliusDieMorietur <ikamqwert@gmail.com>"]
 edition = "2018"
