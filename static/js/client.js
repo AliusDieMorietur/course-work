@@ -49,7 +49,7 @@ db.request.onsuccess = event => {
     for (const key of keys) {
       db.getData('RandomNumbers', key).onsuccess = event => {
         const myNumber = event.srcElement.result.number;
-        numberBox.innerHTML += `<li>${myNumber}</li> `
+        numberBox.innerHTML += `<li>${myNumber}</li> `;
       };
     }
   };
