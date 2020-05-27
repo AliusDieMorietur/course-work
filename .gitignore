@@ -1,9 +1,7 @@
 node_modules
 api
 test
+scv
 package-lock.json
-scv/target
-scv/Cargo.lock
-scv/template.cfg
 static/js/test-client.js
 server/test-server.js
