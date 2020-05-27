@@ -1,5 +1,8 @@
 node_modules
 package-lock.json
 scavanger/target
+scavanger/Cargo.lock
 api
 test
+static/js/test-clients.js
+server/test-server
