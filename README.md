@@ -16,7 +16,7 @@ The current state of PWA is poor. Many problems, many flaws, not convenient synt
 2. Move to localhost:8000
 3. Enjoy basic PWA experience
 
-# Scv (optional)
+## Scv (optional)
 Helps to create PWA template
 https://github.com/AliusDieMorietur/scv
 
