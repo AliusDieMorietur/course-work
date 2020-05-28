@@ -17,9 +17,9 @@ const MIME_TYPES = {
 
 const serveStatic = (entryPoint, staticPath, port, mimeTypes, errorFunction) => {
   const server = http.createServer(async (req, res) => {
-    const url = req.url === '/' ? entryPoint : req.url;
+    const url = req.url === '/' ? entryPoint: req.url;
     console.log(url);
-    const path = `${staticPath}${url}`;
+    let path = `${staticPath}${url}`;
     try {
       const data = await fs.promises.readFile(path);
       const splitted = url.split('.');
@@ -37,6 +37,6 @@ const serveStatic = (entryPoint, staticPath, port, mimeTypes, errorFunction) => 
     }
   }).listen(port);
   return server;
-};
+}
 
 serveStatic('/index.html', STATIC_PATH, 8000, MIME_TYPES);
