@@ -61,12 +61,35 @@ class WorkerTools {
 }
 
 class Db {
-  constructor(name, version, errorFunction, successFunction) {
+  constructor(name, version) {
     this.name = name;
     this.version = version;
     this.request = window.indexedDB.open(name, version);
     this.db;
     this.objectsStored = new Map();
+    this.onSuccess;
+    this.onUpgrade;
+    this.onError;
+  }
+
+  set onSuccess(func) {
+    this.request.onsuccess = event => {
+      this.db = event.target.result;
+      func();
+    }
+  }
+  
+  set onError(func) {
+    this.request.onerror = event => {
+      func(event);
+    }
+  }
+
+  set onUpgrade(func) {
+    this.request.onupgradeneeded = event => {
+      this.db = event.target.result;
+      func();
+    }
   }
 
   initializeObject(name, storageMethod, indexes, data) {
@@ -88,7 +111,17 @@ class Db {
   getData(name, key) {
     const transaction = this.db.transaction([name]);
     const objectStore = transaction.objectStore(name);
-    return objectStore.get(key);
+    const data = new Promise((resolve, reject) => {
+      objectStore.get(key).onsuccess = event => {
+        const result = event.srcElement.result;
+        if (result) {
+          resolve(result);
+        } else {
+          reject('no data');
+        }
+      };
+    });
+    return data;
   }
 
   deleteData(name, key) {
@@ -97,7 +130,14 @@ class Db {
     objectStore.delete(key);
   }
 
-  log() {
-    console.log(this.db);
+  keys(name) {
+    const transaction = this.db.transaction([name]);
+    const objectStore = transaction.objectStore(name);
+    const keys = new Promise((resolve, reject) => {
+      objectStore.getAllKeys().onsuccess = event => {
+        resolve(event.srcElement.result);
+      };
+    });
+    return keys;
   }
 }

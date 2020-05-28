@@ -40,27 +40,21 @@ getBtn.addEventListener('click', () => {
 
 const db = new Db('MyDataBase', 1);
 
-db.request.onsuccess = event => {
-  db.db = event.target.result;
-  const transaction = db.db.transaction(["RandomNumbers"]);
-  const objectStore = transaction.objectStore("RandomNumbers");
-  objectStore.getAllKeys().onsuccess = event => {
-    const keys = event.srcElement.result;
+db.onSuccess = () => {
+  db.keys('RandomNumbers').then(keys => {
     for (const key of keys) {
-      db.getData('RandomNumbers', key).onsuccess = event => {
-        const myNumber = event.srcElement.result.number;
+      db.getData('RandomNumbers', key).then(data => {
+        const myNumber = data.number;
         numberBox.innerHTML += `<li>${myNumber}</li> `;
-      };
-    }
-  };
-}
+      });
+    };
+  });
+};
 
-db.request.onupgradeneeded = event => {
-  db.db = event.target.result;
+db.onUpgrade = () => {
   const indexes = [{ indexName: 'number', keyPath: 'number', optionalParameters: { unique: false }}];
   const randomNumbers = db.initializeObject('RandomNumbers', { keyPath: 'date'}, indexes);
 };
 
-db.request.onerror = event => {
-  console.log(event);
-};
+db.onError = console.log;
+

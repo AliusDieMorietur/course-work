@@ -9,4 +9,7 @@
 * setData(name, data)
 * getData(name, key)
 * deleteData(name, key)
-* log()
+* keys(name)
+* onSuccess(func)
+* onError(func)
+* onUpgrade(func)
