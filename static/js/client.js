@@ -40,7 +40,7 @@ getBtn.addEventListener('click', () => {
 
 const db = new Db('MyDataBase', 1);
 
-db.onSuccess = () => {
+db.onSuccess = event => {
   db.keys('RandomNumbers').then(keys => {
     for (const key of keys) {
       db.getData('RandomNumbers', key).then(data => {
@@ -51,7 +51,7 @@ db.onSuccess = () => {
   });
 };
 
-db.onUpgrade = () => {
+db.onUpgrade = event => {
   const indexes = [{ indexName: 'number', keyPath: 'number', optionalParameters: { unique: false }}];
   const randomNumbers = db.initializeObject('RandomNumbers', { keyPath: 'date'}, indexes);
 };

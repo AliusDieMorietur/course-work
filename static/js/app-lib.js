@@ -66,28 +66,20 @@ class Db {
     this.version = version;
     this.request = window.indexedDB.open(name, version);
     this.db;
-    this.objectsStored = new Map();
     this.onSuccess;
     this.onUpgrade;
     this.onError;
-    this.events = {
-      successEvent: {},
-      upgradeEvent: {},
-      errorEvent: {},
-    };
   }
 
   set onSuccess(func) {
     this.request.onsuccess = event => {
       this.db = event.target.result;
-      this.events.successEvent = event;
-      func();
+      func(event);
     }
   }
   
   set onError(func) {
     this.request.onerror = event => {
-      this.events.errorEvent = event;
       func(event);
     }
   }
@@ -95,8 +87,7 @@ class Db {
   set onUpgrade(func) {
     this.request.onupgradeneeded = event => {
       this.db = event.target.result;
-      this.events.upgradeEvent = event;
-      func();
+      func(event);
     }
   }
 
