@@ -37,8 +37,8 @@
 * Initialize your first object when db just created:
 ```javascript
   db.onUpgrade = event => {
-    const indexes = [{ indexName: 'number', keyPath: 'number', optionalParameters: { unique: false }}];
-    const randomNumbers = db.initializeObject('RandomNumbers', { keyPath: 'date'}, indexes);
+    const indexes = [{ indexName: 'yourIndex', keyPath: 'yourKeyPath', optionalParameters: { unique: false }}];
+    const randomNumbers = db.initializeObject('yourObject', { keyPath: 'yourKey'}, indexes);
   };
 ```
 
@@ -51,10 +51,10 @@
   Yes |	Yes |	This object store can only hold JavaScript objects. Usually a key is generated and the value of the generated key is stored in the object in a property with the same name as the key path. However, if such a property already exists, the value of that property is used as key rather than generating a new key.
 
 * Createing indexes: 
-<code>indexName</code> will define which name your index will have. <code>keyPath</code> will define by which property information will be find, <code>optionalParamters</code> defines some additional properties. 
+<code>indexName</code> will define which name your index will have. <code>keyPath</code> will define by which property information will be found, <code>optionalParamters</code> defines some additional properties. 
 ```javascript
   const indexes = [
-    { indexName: 'number', keyPath: 'number', optionalParameters: { unique: false }},
+    { indexName: 'key', keyPath: 'key', optionalParameters: { unique: false }},
     { indexName: 'ssn', keyPath: 'ssn', optionalParameters: { unique: true }},
   ];
 ```
