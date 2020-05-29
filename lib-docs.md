@@ -8,7 +8,7 @@
 ## Db
   Name | Parameters | Desription 
   ---- | ---------- | ---------- 
-  Db | (name: String, version: String) | Initialize new database. 
+  Constructor | (name: String, version: String) | Initialize new database. 
   onSuccess | (func: (event: Object) => void) | Event which will be triggered when database will be available.
   onError | (func: (event: Object) => void) | Event which will be triggered when failed to get access to database.
   onUpgrade | (func: (event: Object) => void) | Event which will be triggered on the start
