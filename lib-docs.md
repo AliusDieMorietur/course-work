@@ -11,7 +11,7 @@
   onError | (func: (event: Object) => void) | Event which will be triggered when failed to get access to database.
   onUpgrade | (func: (event: Object) => void) | Event which will be triggered on the start
   initializeObject | (name: String, storageMethod: Object, indexes: Array) | Creates object where data will be stored.
-  setData | (name: String, data: Object\|Primitive) | Adds data to the object.
+  setData | (name: String, data: Any) | Adds data to the object.
   getData | (name: String, key: String) | Gets data from the object.
   deleteData | (name: String, key: String) | Deletes data from the object.
   keys | (name: String) | Return keys of all data stored in object.
