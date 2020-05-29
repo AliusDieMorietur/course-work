@@ -91,13 +91,12 @@ class Db {
     }
   }
 
-  initializeObject(name, storageMethod, indexes, data) {
+  initializeObject(name, storageMethod, indexes) {
     const objectStore = this.db.createObjectStore(name, storageMethod);
     for (const item of indexes) {
       const optionalParameters = item.optionalParameters ? item.optionalParameters : {}; 
       objectStore.createIndex(item.indexName, item.keyPath, optionalParameters);
     };
-    if (data) this.addData(name, data);
   }
 
   setData(name, data) {
@@ -128,10 +127,10 @@ class Db {
     objectStore.delete(key);
   }
   
-  async clearAll(object) {
-    const keys = await this.keys(object);
+  async clearAll(name) {
+    const keys = await this.keys(name);
     for await (const key of keys) {
-      this.deleteData(object, key);
+      this.deleteData(name, key);
     }
   }
 
