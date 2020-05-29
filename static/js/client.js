@@ -67,6 +67,7 @@ const renderObject = object => {
 const db = new Db('MyDataBase', 1);
 
 db.onSuccess = event => {
+  db.has('RandomNumbers', '1590762678560').then(console.log);
   renderObject('RandomNumbers');
 };
 

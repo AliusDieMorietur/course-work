@@ -134,6 +134,22 @@ class Db {
     }
   }
 
+  has(name, key) {
+    const transaction = this.db.transaction([name]);
+    const objectStore = transaction.objectStore(name);
+    const availability = new Promise((resolve, reject) => {
+      objectStore.get(key).onsuccess = event => {
+        const result = event.srcElement.result;
+        if (result) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      };
+    });
+    return availability;
+  }
+  
   keys(name) {
     const transaction = this.db.transaction([name]);
     const objectStore = transaction.objectStore(name);
