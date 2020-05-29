@@ -14,9 +14,9 @@
   onUpgrade | (func: (event: Object) => void) | Event which will be triggered on the start
   initializeObject | (name: String, storageMethod: Object, indexes: Array) | Creates object where data will be stored.
   setData | (name: String, data: Any) | Adds data to the object.
-  getData | (name: String, key: Any) | Gets data from the object.
+  getData | (name: String, key: Any) => Promise | Gets data from the object.
   deleteData | (name: String, key: String) | Deletes data from the object.
-  keys | (name: String) | Return keys of all data stored in object.
-  has | (name: String, key: Any) | Checks availability of some value by key in object;
-  async values | (name: String) | Return all values whch stored in object.
+  keys | (name: String) => Promise | Return keys of all data stored in object.
+  has | (name: String, key: Any) => Promise | Checks availability of some value by key in object;
+  async values | (name: String) => Promise | Return all values whch stored in object.
   async clearAll | (name: String) | Deletes all data in object.
