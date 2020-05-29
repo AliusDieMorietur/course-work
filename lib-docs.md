@@ -43,7 +43,7 @@
 ```
 
 * Choose how to track your data
-  keyPath | Key Generator | Description
+  key Path | Key Generator | Description
   ------- | ------------- | -----------
   No | No |	This object store can hold any kind of value, even primitive values like numbers and strings. You must supply a separate key argument whenever you want to add a new value.
   Yes |	No | This object store can only hold JavaScript objects. The objects must have a property with the same name as the key path.
@@ -51,7 +51,7 @@
   Yes |	Yes |	This object store can only hold JavaScript objects. Usually a key is generated and the value of the generated key is stored in the object in a property with the same name as the key path. However, if such a property already exists, the value of that property is used as key rather than generating a new key.
 
 * Createing indexes: 
-indexName will define which name your index will have. keyPath will define by which property information will be find, optionalParamters defines some additional properties. 
+**indexName** will define which name your index will have. **keyPath** will define by which property information will be find, **optionalParamters** defines some additional properties. 
 ```javascript
   const indexes = [
     { indexName: 'number', keyPath: 'number', optionalParameters: { unique: false }},
