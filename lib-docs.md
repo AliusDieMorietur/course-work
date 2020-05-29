@@ -61,14 +61,14 @@
 
 * Set | Get | Delete data from your object
 ```javascript
-  db.setData('MyObject', { myKeyPath: 'Some uniqгe key', myValue: 'Some value' });
-  db.getData('MyObject', 'Some uniqгe key');
-  db.deleteData('MyObject', 'Some uniqгe key');
+  db.setData('MyObject', { myKeyPath: 'Some unique key', myValue: 'Some value' });
+  db.getData('MyObject', 'Some unique key');
+  db.deleteData('MyObject', 'Some unique key');
 ```
 
 * Use additional methods to work much easier with your data:
 ```javascript
-  db.has('MyObject', 'Some uniqгe key');
+  db.has('MyObject', 'Some unique key');
   db.keys('MyObject');
   db.values('MyObject'); 
   db.clearAll('MyObject')
