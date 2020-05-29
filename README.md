@@ -23,16 +23,16 @@ https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 1. Fork and clone this repository or prepare configuration yourself
 2. Connect <code>app-lib.js</code> in your html file before your client scripts
 3. Use <code>importScripts('./js/app-lib.js')</code>in your worker file and add basic configuration to your worker
-4. Initialize db as it shown in documentation
+4. Initialize db as it shown in documentation[https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md]
 5. Run <code>node server.js</code> (prepared server) or set up your own one which can serve static
 6. Enjoy basic PWA experience!
 
 
 ### With scv
-1. Fork and clone this repository https://github.com/AliusDieMorietur/scv
+1. Fork and clone this repository[https://github.com/AliusDieMorietur/scv]
 2. Run <code>scv pwa</code>
 3. Add basic configuration to your worker 
-4. Initialize db as it shown in documentation
+4. Initialize db as it shown in documentation[https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md]
 5. Run project with node <code>server.js</code> and stop with Ctrl+C
 6. Enjoy basic PWA experience!
 
