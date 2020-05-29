@@ -3,5 +3,6 @@ api
 test
 scv
 package-lock.json
+.eslintrc.json
 static/js/test-client.js
 server/test-server.js

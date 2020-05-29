@@ -37,7 +37,7 @@ class WorkerTools {
     });
   };
 
-  static installWorker(files, version) {
+  static install(files, version) {
     self.addEventListener('install', event => event.waitUntil(caches.open(version).then(cache => cache.addAll(files))));
   }
 

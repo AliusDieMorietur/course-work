@@ -1,8 +1,10 @@
 # Documetation for lib
 ## WorkerTools
-* registerServiceWorker(path, log = true, errorFunction)
-* installWorker(files, version)
-* interceptFecth(version)
+  Name | Parameters | Desription 
+  ---- | ---------- | ---------- 
+  registerServiceWorker | (path: String, log = true, [errorFunction: (error) => void]) | Register service worker by it's path.
+  install | (files: Array, version: String) | Intercept install event and cache files automaticly.
+  interceptFecth | (version: String) | Intercept fetch event and load files from cache automaticly.
 ## Db
   Name | Parameters | Desription 
   ---- | ---------- | ---------- 

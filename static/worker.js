@@ -14,6 +14,6 @@ const files = [
   '/js/app-lib.js',
 ];
 
-WorkerTools.installWorker(files, version);
+WorkerTools.install(files, version);
 WorkerTools.interceptFecth(version);
 
