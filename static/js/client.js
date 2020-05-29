@@ -13,6 +13,7 @@ window.addEventListener('appinstalled', event => {
 });
 
 const getBtn = document.getElementById('get');
+const delBtn = document.getElementById('deleteAll');
 const numberBox = document.getElementById('numbers');
 const view = document.getElementById('view');
 const minInput = document.getElementById('min');
@@ -33,22 +34,40 @@ getBtn.addEventListener('click', () => {
   if(maxValue && minValue) {
     const random = getRandom(minValue, maxValue);
     view.innerHTML = `Your number: ${random}`;
-    numberBox.innerHTML += `<li>${random}</li>`
     db.setData('RandomNumbers', { date: `${Date.now()}`, number: random });
+    renderObject('RandomNumbers');
   }
 });
+
+delBtn.addEventListener('click', async () => {
+  await db.clearAll('RandomNumbers');
+  renderObject('RandomNumbers');
+});
+
+const renderObject = object => {
+  numberBox.innerHTML = '';
+  db.values(object).then(values => {
+    for (const value of values) {
+      const myNumber = value.number;
+      const deleteNumber = `
+        db.deleteData('${object}', '${value.date}');
+        renderObject('${object}');
+      `;
+      numberBox.innerHTML += `<li><label>key: ${value.date}; value: ${myNumber} </label><button onclick="${deleteNumber}" id="${value.date}">X</button></li>`
+      // const deleteBtn = document.getElementById(value.date); // doesn't works for some reason.
+      // console.log(numberBox.innerHTML);
+      // deleteBtn.addEventListener('click', () => {
+      //   db.deleteData(object, value.date); 
+      //   renderObject(object);
+      // });
+    }
+  });
+}
 
 const db = new Db('MyDataBase', 1);
 
 db.onSuccess = event => {
-  db.keys('RandomNumbers').then(keys => {
-    for (const key of keys) {
-      db.getData('RandomNumbers', key).then(data => {
-        const myNumber = data.number;
-        numberBox.innerHTML += `<li>${myNumber}</li> `;
-      });
-    };
-  });
+  renderObject('RandomNumbers');
 };
 
 db.onUpgrade = event => {
