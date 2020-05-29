@@ -21,7 +21,7 @@ https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 ## Usage
 ### Default
 1. Fork and clone this repository or prepare configuration yourself
-2. Connect <app-lib.js> in your html file before your client scripts
+2. Connect <code>app-lib.js</code> in your html file before your client scripts
 3. Use **importScripts('./js/app-lib.js')** in your worker file and add basic configuration to your worker
 4. Initialize db as it shown in documentation
 5. Run **node server.js** (prepared server) or set up your own one which can serve static
