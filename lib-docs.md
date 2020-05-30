@@ -13,6 +13,7 @@
   onError | (func: (event: Object) => void) | Event which will be triggered when failed to get access to database.
   onUpgrade | (func: (event: Object) => void) | Event which will be triggered on the start
   initializeObject | (name: String, storageMethod: Object, indexes: Array) | Creates object where data will be stored.
+  openTransaction | (name: String) | There are another way to access transaction but this is more convenient way.
   setData | (name: String, data: Any) | Adds data to the object.
   getData | (name: String, key: Any) => Promise | Gets data from the object.
   deleteData | (name: String, key: String) | Deletes data from the object.
@@ -20,11 +21,15 @@
   has | (name: String, key: Any) => Promise | Checks availability of some value by key in object;
   async values | (name: String) => Promise | Return all values whch stored in object.
   async clearAll | (name: String) | Deletes all data in object.
+  openCursor | (name: String) | Returns object where you can get <code>onSuccess</code> event with iterator to get all objects in objectStore.
+  openIndexCursor | (name: String, indexName: String) | Returns object where you can get <code>onSuccess</code> event with iterator to get all objects by index and get access to whole object on current step.
+  openIndexKeyCursor | (name: String, indexName: String) | Returns object where you can get <code>onSuccess</code> event with iterator to get all objects by index and get access only to the key.
+  getIndex | (name: String, indexName: String) | 
 
 ## Basics
 * Initialize db: 
 ```javascript
-  const db = new Db('MyDataBase', 1);
+  const db = new Db('YourDataBase', 1);
 ```
 
 * Catch basic events:
@@ -37,8 +42,8 @@
 * Initialize your first object when db just created:
 ```javascript
   db.onUpgrade = event => {
-    const indexes = [{ indexName: 'yourIndex', keyPath: 'yourKeyPath', optionalParameters: { unique: false }}];
-    const randomNumbers = db.initializeObject('yourObject', { keyPath: 'yourKey'}, indexes);
+    const indexes = [{ indexName: 'YourIndex', keyPath: 'YourKeyPath', optionalParameters: { unique: false }}];
+    const randomNumbers = db.initializeObject('YourObject', { keyPath: 'YourKey'}, indexes);
   };
 ```
 
@@ -61,15 +66,30 @@
 
 * Set | Get | Delete data from your object
 ```javascript
-  db.setData('MyObject', { myKeyPath: 'Some unique key', myValue: 'Some value' });
-  db.getData('MyObject', 'Some unique key');
-  db.deleteData('MyObject', 'Some unique key');
+  db.setData('YourObject', { myKeyPath: 'Some unique key', myValue: 'Some value' });
+  db.getData('YourObject', 'Some unique key');
+  db.deleteData('YourObject', 'Some unique key');
+```
+
+* Get data from cursor
+```javascript
+db.openCursor('').onSuccess = cursor => {
+    if (cursor) {
+      const value = cursor.value;
+      const key = cursor.key;
+      console.log(key, value);
+      cursor.continue();
+    }
+    else {
+      console.log('no more entries');
+    }
+  }
 ```
 
 * Use additional methods to work much easier with your data:
 ```javascript
-  db.has('MyObject', 'Some unique key');
-  db.keys('MyObject');
-  db.values('MyObject'); 
-  db.clearAll('MyObject')
+  db.has('YourObject', 'Some unique key');
+  db.keys('YourObject');
+  db.values('YourObject'); 
+  db.clearAll('YourObject')
 ```

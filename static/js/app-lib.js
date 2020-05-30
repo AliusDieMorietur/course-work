@@ -91,6 +91,12 @@ class Db {
     }
   }
 
+  getIndex(name, indexName) {
+    const objectStore = this.getObject(name);
+    const index = objectStore.index(indexName);
+    return index;
+  }
+
   initializeObject(name, storageMethod, indexes) {
     const objectStore = this.db.createObjectStore(name, storageMethod);
     for (const item of indexes) {
@@ -100,14 +106,12 @@ class Db {
   }
 
   setData(name, data) {
-    const transaction = this.db.transaction([name], "readwrite");
-    const objectStore = transaction.objectStore(name);
+    const objectStore = this.getObject(name);
     objectStore.add(data);
   }
 
   getData(name, key) {
-    const transaction = this.db.transaction([name]);
-    const objectStore = transaction.objectStore(name);
+    const objectStore = this.getObject(name);
     const data = new Promise((resolve, reject) => {
       objectStore.get(key).onsuccess = event => {
         const result = event.srcElement.result;
@@ -122,8 +126,7 @@ class Db {
   }
 
   deleteData(name, key) {
-    const transaction = this.db.transaction([name], "readwrite");
-    const objectStore = transaction.objectStore(name);
+    const objectStore = this.getObject(name);
     objectStore.delete(key);
   }
   
@@ -135,8 +138,7 @@ class Db {
   }
 
   has(name, key) {
-    const transaction = this.db.transaction([name]);
-    const objectStore = transaction.objectStore(name);
+    const objectStore = this.getObject(name);
     const availability = new Promise((resolve, reject) => {
       objectStore.get(key).onsuccess = event => {
         const result = event.srcElement.result;
@@ -150,9 +152,56 @@ class Db {
     return availability;
   }
   
-  keys(name) {
-    const transaction = this.db.transaction([name]);
+  openTransaction(name) {
+    return this.db.transaction(name);
+  }
+
+  getObject(name) {
+    const transaction = this.db.transaction([name], 'readwrite');
     const objectStore = transaction.objectStore(name);
+    return objectStore;
+  }
+
+  openCursor(name) {
+    const objectStore = this.getObject(name);
+    return {
+      set onSuccess(func) {
+        objectStore.openCursor().onsuccess = event => {
+          const cursor = event.target.result;
+          func(cursor);
+        }
+      } 
+    }
+  }
+
+  openIndexCursor(name, indexName) {
+    const objectStore = this.getObject(name);
+    const index = objectStore.index(indexName);
+    return {
+      set onSuccess(func) {
+        index.openCursor().onsuccess = event => {
+          const cursor = event.target.result;
+          func(cursor);
+        };
+      }
+    }
+  }
+
+  openIndexKeyCursor(name, indexName) {
+    const objectStore = this.getObject(name);
+    const index = objectStore.index(indexName);
+    return {
+      set onSuccess(func) {
+        index.openKeyCursor().onsuccess = event => {
+          const cursor = event.target.result;
+          func(cursor);
+        };
+      }
+    }
+  }
+
+  keys(name) {
+    const objectStore = this.getObject(name);
     const keys = new Promise((resolve, reject) => {
       objectStore.getAllKeys().onsuccess = event => {
         resolve(event.srcElement.result);

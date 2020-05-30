@@ -28,10 +28,10 @@ const getRandom = (min, max) => {
 getBtn.addEventListener('click', () => {
   const minValue = minInput.value;
   const maxValue = maxInput.value;
-  if(!minValue || !maxValue) {
+  if (!minValue || !maxValue) {
     view.innerHTML = 'Enter valid numbers';
   }
-  if(maxValue && minValue) {
+  if (maxValue && minValue) {
     const random = getRandom(minValue, maxValue);
     view.innerHTML = `Your number: ${random}`;
     db.setData('RandomNumbers', { date: `${Date.now()}`, number: random });
@@ -46,29 +46,43 @@ delBtn.addEventListener('click', async () => {
 
 const renderObject = object => {
   numberBox.innerHTML = '';
-  db.values(object).then(values => {
-    for (const value of values) {
-      const myNumber = value.number;
+  db.openCursor(object).onSuccess = cursor => {
+    if (cursor) {
+      const myNumber = cursor.value.number;
+      const key = cursor.key;
       const deleteNumber = `
-        db.deleteData('${object}', '${value.date}');
+        db.deleteData('${object}', '${key}');
         renderObject('${object}');
       `;
-      numberBox.innerHTML += `<li><label>key: ${value.date}; value: ${myNumber} </label><button onclick="${deleteNumber}" id="${value.date}">X</button></li>`
-      // const deleteBtn = document.getElementById(value.date); // doesn't works for some reason.
-      // console.log(numberBox.innerHTML);
-      // deleteBtn.addEventListener('click', () => {
-      //   db.deleteData(object, value.date); 
-      //   renderObject(object);
-      // });
+      numberBox.innerHTML += `<li><label>key: ${key}; value: ${myNumber}</label><button onclick="${deleteNumber}" id="${key}">X</button></li>`
+      cursor.continue();
     }
-  });
+  }
+  // db.values(object).then(values => {
+  //   for (const value of values) {
+  //     const myNumber = value.number;
+  //     const deleteNumber = `
+  //       db.deleteData('${object}', '${value.date}');
+  //       renderObject('${object}');
+  //     `;
+  //     numberBox.innerHTML += `<li><label>key: ${value.date}; value: ${myNumber}</label><button onclick="${deleteNumber}" id="${value.date}">X</button></li>`
+  //     // const deleteBtn = document.getElementById(value.date); // doesn't works for some reason.
+  //     // console.log(numberBox.innerHTML);
+  //     // deleteBtn.addEventListener('click', () => {
+  //     //   db.deleteData(object, value.date); 
+  //     //   renderObject(object);
+  //     // });
+  //   }
+  // });
 }
 
 const db = new Db('MyDataBase', 1);
 
-db.onSuccess = event => {
-  db.has('RandomNumbers', '1590762678560').then(console.log);
+db.onSuccess = async event => {
+  const available = await db.has('RandomNumbers', '1590762678560');
+  console.log(`Available: ${available}`);
   renderObject('RandomNumbers');
+  console.log(db.getIndex('RandomNumbers', 'number'));
 };
 
 db.onUpgrade = event => {
@@ -77,4 +91,5 @@ db.onUpgrade = event => {
 };
 
 db.onError = console.log;
+
 
