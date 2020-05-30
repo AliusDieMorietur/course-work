@@ -19,8 +19,8 @@
   deleteData | (name: String, key: String) | Deletes data from the object.
   keys | (name: String) => Promise | Return keys of all data stored in object.
   has | (name: String, key: Any) => Promise | Checks availability of some value by key in object;
-  async values | (name: String) => Promise | Return all values whch stored in object.
-  async clearAll | (name: String) | Deletes all data in object.
+  values | async (name: String) => Promise | Return all values whch stored in object.
+  clearAll | async (name: String) | Deletes all data in object.
   openCursor | (name: String) | Returns object where you can get <code>onSuccess</code> event with iterator to get all objects in objectStore.
   openIndexCursor | (name: String, indexName: String) | Returns object where you can get <code>onSuccess</code> event with iterator to get all objects by index and get access to whole object on current step.
   openIndexKeyCursor | (name: String, indexName: String) | Returns object where you can get <code>onSuccess</code> event with iterator to get all objects by index and get access only to the key.
