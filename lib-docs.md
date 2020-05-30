@@ -24,7 +24,7 @@
   openCursor | (name: String) | Returns object where you can get <code>onSuccess</code> event with iterator to get all objects in objectStore.
   openIndexCursor | (name: String, indexName: String) | Returns object where you can get <code>onSuccess</code> event with iterator to get all objects by index and get access to whole object on current step.
   openIndexKeyCursor | (name: String, indexName: String) | Returns object where you can get <code>onSuccess</code> event with iterator to get all objects by index and get access only to the key.
-  getIndex | (name: String, indexName: String) | 
+  getIndex | (name: String, indexName: String) | Return index by name.
 
 ## Basics
 * Initialize db: 
