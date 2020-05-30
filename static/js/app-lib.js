@@ -71,6 +71,12 @@ class Db {
     this.onError;
   }
 
+  deleteDatabase(name) {
+    window.indexedDB.deleteDatabase(name).onsuccess = event => {
+      delete this;
+    };
+  }
+
   set onSuccess(func) {
     this.request.onsuccess = event => {
       this.db = event.target.result;

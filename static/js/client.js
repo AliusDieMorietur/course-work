@@ -76,7 +76,7 @@ const renderObject = object => {
   // });
 }
 
-const db = new Db('MyDataBase', 1);
+const db = new Db('MyDatabase', 1);
 
 db.onSuccess = async event => {
   const available = await db.has('RandomNumbers', '1590762678560');
