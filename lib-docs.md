@@ -28,6 +28,31 @@
   deleteDatabase | (name: String) | Delete database.
 
 ## Basics
+* Register Worker
+```javascript
+  WorkerTools.registerServiceWorker('your worker path');
+```
+
+* Install Worker
+```javascript
+  importScripts('./js/app-lib.js');
+
+  const version = 'v1';
+
+  const files = [ // files which will be cached
+    '/folder_1',
+    '/file_1',
+    '/folder_2/file_2',
+  ];
+
+  WorkerTools.install(files, version);
+```
+
+* Intercept "fetch"
+```javascript
+  WorkerTools.interceptFecth(version);
+```
+
 * Initialize db: 
 ```javascript
   const db = new Db('YourDataBase', 1);
