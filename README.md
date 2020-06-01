@@ -6,9 +6,11 @@ The current state of PWA is poor. Many problems, many flaws, not convenient synt
 ## Tasks
 - [x] Basic Tools for worker
 - [x] Basic methods for indexeddb
-- [ ] A large set of different methods for working with data inside indexeddb objects
-- [ ] Support cursor
+- [x] Set of different methods for working with data inside indexeddb objects
+- [x] Support cursor
 - [ ] Make additional methods for service workers.
+- [ ] Make some changes in PWA creation process;
+- [ ] Write test;
 
 ## Requirements for PWA
 * http-server to serve static
