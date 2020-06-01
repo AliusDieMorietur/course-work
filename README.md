@@ -38,7 +38,7 @@ https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 
 
 ### With scv
-1. Fork and clone this [repository](https://github.com/AliusDieMorietur/scv)
+1. Follow instructions as shown in this [repository](https://github.com/AliusDieMorietur/scv)
 2. Run <code>scv pwa</code>to set up template for pwa project
 3. Register and add basic configuration to your worker 
 4. Initialize db as it shown in [documentation](https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md)
