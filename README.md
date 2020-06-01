@@ -22,11 +22,13 @@ https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 
 ## Usage
 ### Default
+* Option 1
 1. Fork or clone this repository[https://github.com/AliusDieMorietur/course-work]
 2. Run <code>node server.js</code> (prepared server) 
 3. Customize provided example
 4. Enjoy basic PWA experience!
 ---
+* Option 2
 1. Prepare directory and all files needed
 2. Copy <code>app-lib.js</code> and connect it in your html file before your client scripts
 4. Configure worker and db as it shown in [documentation](https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md)
