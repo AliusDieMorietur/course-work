@@ -1,7 +1,7 @@
 # Library for PWA
 
 ## Concept
-The current state of PWA is poor. Many problems, many flaws, not convenient syntax, difficulties in launching a project. This library is designed to solve these problems, facilitate the process of creating PWA, reduce duplicate code, etc.
+The current state of PWA is poor. Many problems, many flaws, not convenient syntax, difficulties in launching a project. This library is designed to solve these problems, facilitate the process of creating PWA, reduce duplicate code, etc. Most methods are focused on indexeddb, since there are the most difficulties.
 
 ## Tasks
 - [x] Basic Tools for worker
@@ -31,13 +31,13 @@ https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 ### With scv
 1. Fork and clone this [repository](https://github.com/AliusDieMorietur/scv)
 2. Run <code>scv pwa</code>to set up template for pwa project
-3. Add basic configuration to your worker 
+3. Register and add basic configuration to your worker 
 4. Initialize db as it shown in [documentation](https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md)
 5. Run project with <code>node server.js</code> and stop with Ctrl+C
 6. Enjoy basic PWA experience!
 
 
-## Scv (optional)
+## scv (optional)
 Helps to create PWA template
 https://github.com/AliusDieMorietur/scv
 
