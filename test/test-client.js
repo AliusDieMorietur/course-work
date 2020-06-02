@@ -3,9 +3,7 @@
 
 const url = '/test';
 
-const test = {
-
-}
+const test = {};
 
 const send = new Promise((resolve, reject) => {
   const db = new Db('test-db', 1);
@@ -26,7 +24,7 @@ const send = new Promise((resolve, reject) => {
       db.keys,
       db.values
     ].map(el => el.bind(db));
-      const args = [
+    const args = [
       ['testObject'],
       ['testObject', { date: `${Date.now()}`, test: '1' }],
       ['testObject', `${Date.now()}`],
@@ -44,7 +42,7 @@ const send = new Promise((resolve, reject) => {
       } catch (error) {
         test[`${i}_${func.name}`] = { status: 'failed', msg: error.message };
       }
-    }
+    };
     resolve(test);
   }
 }).then(data => {
