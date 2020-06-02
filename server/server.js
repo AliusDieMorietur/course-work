@@ -15,28 +15,19 @@ const MIME_TYPES = {
   svg: 'image/svg+xml',
 };
 
-const serveStatic = (entryPoint, staticPath, port, mimeTypes, errorFunction) => {
-  const server = http.createServer(async (req, res) => {
-    const url = req.url === '/' ? entryPoint: req.url;
-    console.log(url);
-    let path = `${staticPath}${url}`;
-    try {
-      const data = await fs.promises.readFile(path);
-      const splitted = url.split('.');
-      const type = splitted[splitted.length - 1];
-      res.writeHead(200, { 'Content-Type': mimeTypes[type] });
-      res.end(data);
-    } catch (err) {
-      if (errorFunction) {
-        errorFunction(err);
-      } else {
-        res.statusCode = 404;
-        console.log(err);
-        res.end('"File is not found"');
-      }
-    }
-  }).listen(port);
-  return server;
-}
+const serveFile = name => {
+  const filePath = path.join(STATIC_PATH, name);
+  if (!filePath.startsWith(STATIC_PATH)) return null;
+  return fs.createReadStream(filePath);
+};
 
-serveStatic('/index.html', STATIC_PATH, 8000, MIME_TYPES);
+http.createServer(async (req, res) => {
+  const url = req.url === '/' ? '/index.html' : req.url;
+  console.log(url);
+  const fileExt = path.extname(url).substring(1);
+  res.writeHead(200, { 'Content-Type': MIME_TYPES[fileExt] });
+  const stream = serveFile(url);
+  if (stream) stream.pipe(res);
+}).listen(8000);
+
+

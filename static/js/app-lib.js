@@ -1,3 +1,5 @@
+'use strict';
+
 class WorkerTools {
   static registerServiceWorker(path, log = true, errorFunction) {
     if (!Reflect.has(navigator, 'serviceWorker')) {
@@ -35,7 +37,7 @@ class WorkerTools {
         console.log(error);
       }
     });
-  };
+  }
 
   static install(files, version) {
     self.addEventListener('install', event => event.waitUntil(caches.open(version).then(cache => cache.addAll(files))));
@@ -45,17 +47,17 @@ class WorkerTools {
     self.addEventListener('fetch', event => {
       event.respondWith(
         caches.match(event.request).then(response => {
-        if (response !== undefined) return response;
-        return fetch(event.request).then(response => {
-          const responseClone = response.clone();
-          caches.open(version).then(cache => {
-            cache.put(event.request, responseClone);
+          if (response !== undefined) return response;
+          return fetch(event.request).then(response => {
+            const responseClone = response.clone();
+            caches.open(version).then(cache => {
+              cache.put(event.request, responseClone);
+            });
+            return response;
+          }).catch(error => {
+            throw error;
           });
-          return response;
-        }).catch(error => {
-          throw error;
-        });
-      }));
+        }));
     });
   }
 }
@@ -81,20 +83,20 @@ class Db {
     this.request.onsuccess = event => {
       this.db = event.target.result;
       func(event);
-    }
+    };
   }
-  
+
   set onError(func) {
     this.request.onerror = event => {
       func(event);
-    }
+    };
   }
 
   set onUpgrade(func) {
     this.request.onupgradeneeded = event => {
       this.db = event.target.result;
       func(event);
-    }
+    };
   }
 
   getIndex(name, indexName) {
@@ -106,9 +108,9 @@ class Db {
   initializeObject(name, storageMethod, indexes) {
     const objectStore = this.db.createObjectStore(name, storageMethod);
     for (const item of indexes) {
-      const optionalParameters = item.optionalParameters ? item.optionalParameters : {}; 
+      const optionalParameters = item.optionalParameters ? item.optionalParameters : {};
       objectStore.createIndex(item.indexName, item.keyPath, optionalParameters);
-    };
+    }
   }
 
   setData(name, data) {
@@ -135,7 +137,7 @@ class Db {
     const objectStore = this.getObject(name);
     objectStore.delete(key);
   }
-  
+
   async clearAll(name) {
     const keys = await this.keys(name);
     for await (const key of keys) {
@@ -157,7 +159,7 @@ class Db {
     });
     return availability;
   }
-  
+
   openTransaction(name) {
     return this.db.transaction(name);
   }
@@ -175,9 +177,9 @@ class Db {
         objectStore.openCursor().onsuccess = event => {
           const cursor = event.target.result;
           func(cursor);
-        }
-      } 
-    }
+        };
+      }
+    };
   }
 
   openIndexCursor(name, indexName) {
@@ -190,7 +192,7 @@ class Db {
           func(cursor);
         };
       }
-    }
+    };
   }
 
   openIndexKeyCursor(name, indexName) {
@@ -203,7 +205,7 @@ class Db {
           func(cursor);
         };
       }
-    }
+    };
   }
 
   keys(name) {

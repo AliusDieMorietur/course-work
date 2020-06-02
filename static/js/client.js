@@ -23,7 +23,7 @@ const getRandom = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 getBtn.addEventListener('click', () => {
   const minValue = minInput.value;
@@ -54,27 +54,15 @@ const renderObject = object => {
         db.deleteData('${object}', '${key}');
         renderObject('${object}');
       `;
-      numberBox.innerHTML += `<li><label>key: ${key}; value: ${myNumber}</label><button onclick="${deleteNumber}" id="${key}">X</button></li>`
+      numberBox.innerHTML +=
+        `<li>
+          <label>key: ${key}; value: ${myNumber}</label>
+          <button onclick="${deleteNumber}" id="${key}">X</button>
+        </li>`;
       cursor.continue();
     }
-  }
-  // db.values(object).then(values => {
-  //   for (const value of values) {
-  //     const myNumber = value.number;
-  //     const deleteNumber = `
-  //       db.deleteData('${object}', '${value.date}');
-  //       renderObject('${object}');
-  //     `;
-  //     numberBox.innerHTML += `<li><label>key: ${value.date}; value: ${myNumber}</label><button onclick="${deleteNumber}" id="${value.date}">X</button></li>`
-  //     // const deleteBtn = document.getElementById(value.date); // doesn't works for some reason.
-  //     // console.log(numberBox.innerHTML);
-  //     // deleteBtn.addEventListener('click', () => {
-  //     //   db.deleteData(object, value.date); 
-  //     //   renderObject(object);
-  //     // });
-  //   }
-  // });
-}
+  };
+};
 
 const db = new Db('MyDatabase', 1);
 
@@ -86,8 +74,10 @@ db.onSuccess = async event => {
 };
 
 db.onUpgrade = event => {
-  const indexes = [{ indexName: 'number', keyPath: 'number', optionalParameters: { unique: false }}];
-  const randomNumbers = db.initializeObject('RandomNumbers', { keyPath: 'date'}, indexes);
+  const indexes = [
+    { indexName: 'number', keyPath: 'number', optionalParameters: { unique: false } }
+  ];
+  const randomNumbers = db.initializeObject('RandomNumbers', { keyPath: 'date' }, indexes);
 };
 
 db.onError = console.log;

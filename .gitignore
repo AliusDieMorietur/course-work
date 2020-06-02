@@ -1,8 +1,7 @@
 node_modules
 api
-test
 scv
+dead
 package-lock.json
-.eslintrc.json
-static/js/test-client.js
-server/test-server.js
+static/js/api-client.js
+server/api-server.js
