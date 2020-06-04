@@ -21,6 +21,10 @@ The current state of PWA is poor. Many problems, many flaws, not convenient synt
 ## Documentation
 https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 
+## Commands 
+* Run tests <code>npm test</code>(linux) && <code>npm run win-test</code>(windows)
+* Run server <code>npm start</code>(linux) && <code>npm run win-start</code>(windows)
+
 ## Usage
 ### Default
 * Option 1
@@ -36,7 +40,6 @@ https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 5. Use any server which can serve static
 6. Use methods provided
 7. Enjoy!
-
 
 ### With scv
 1. Follow instructions as shown in this [repository](https://github.com/AliusDieMorietur/scv)
