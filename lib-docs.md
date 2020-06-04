@@ -52,8 +52,7 @@ Register service worker by it's path, so browser can detect which tasks your wor
 ```
 
 * Install Worker
-
-  When service worker will be installed it will automatically cache all files which declared in <code>files: Array</code>
+    When service worker will be installed it will automatically cache all files which declared in <code>files: Array</code>
   and it's <code>version: String</code>
   > For most projects this task will be same, but you always can rewrite it as you want
 ```javascript
@@ -71,8 +70,7 @@ Register service worker by it's path, so browser can detect which tasks your wor
 ```
 
 * Intercept "fetch"
-
-  When your client sends "fetch" to server it will be intercepted and 
+    When your client sends "fetch" to server it will be intercepted and 
   checked is there access to server or not and gain data from server or from cache.
   > For most projects this task will be same, but you always can rewrite it as you want
 ```javascript
@@ -92,8 +90,7 @@ Register service worker by it's path, so browser can detect which tasks your wor
 ```
 
 * Initialize your first object when db just created:
-
-  When your Database just created you need to initialize objects which you will 
+    When your Database just created you need to initialize objects which you will 
   use in future, you can do it at any time, but at the creation moment it will be the most valuable 
 ```javascript
   db.onUpgrade = event => {
