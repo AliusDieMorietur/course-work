@@ -1,6 +1,6 @@
 # Documetation for lib
 ## WorkerTools
-  Methods | Desription 
+  Methods | Description 
   ------- | ---------- 
   <code>static registerServiceWorker(path: String, log = true, errorFunction: (error))</code> | Register service worker by it's path, so browser can detect which tasks your worker should do.
   <code>static install(files: Array, version: String)</code> | Add cache to the worker when it just installed.
@@ -9,7 +9,7 @@
 ## Db
 
 ### Fields
-  Field | Desription 
+  Field | Description 
   ----- | ---------- 
   <code>name: String</code> | Holds DataBase name
   <code>version: Number</code> | Holds DataBase version
@@ -20,7 +20,7 @@
   <code>onError: event</code> | Error event
 
 ### Methods
-  Method | Desription 
+  Method | Description 
   ------ | ---------- 
   <code>Constructor(name: String, version: String)</code> | Initialize new database. 
   <code>onSuccess(func: (event: Object) => void)</code> | Event which will be triggered when database will be available.
