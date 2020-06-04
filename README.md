@@ -35,6 +35,7 @@ https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 6. Enjoy basic PWA experience!
 
 ## Requirements for PWA
+If you want to use this lib in your project you must have these things:
 * http-server to serve static
 * manifest.json
 * icon pack
