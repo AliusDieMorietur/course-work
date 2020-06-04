@@ -46,58 +46,63 @@
 ## Basics
 * Register Worker 
 
-Register service worker by it's path, so browser can detect which tasks your worker should do.
-```javascript
-  WorkerTools.registerServiceWorker('/your worker path');
-```
+  Register service worker by it's path, so browser can detect which tasks your worker should do.
+  ```javascript
+    WorkerTools.registerServiceWorker('/your worker path');
+  ```
 
 * Install Worker
-    When service worker will be installed it will automatically cache all files which declared in <code>files: Array</code>
+
+  When service worker will be installed it will automatically cache all files which declared in <code>files: Array</code>
   and it's <code>version: String</code>
-  > For most projects this task will be same, but you always can rewrite it as you want
-```javascript
-  importScripts('./js/app-lib.js');
+  > For most projects this method will be enough to set up, but you always can write it as you want
+  ```javascript
+    importScripts('./js/app-lib.js');
 
-  const version = 'v1';
+    const version = 'v1';
 
-  const files = [ // files which will be cached
-    '/folder_1',
-    '/file_1',
-    '/folder_2/file_2',
-  ];
+    const files = [ // files which will be cached
+      '/folder_1',
+      '/file_1',
+      '/folder_2/file_2',
+    ];
 
-  WorkerTools.install(files, version);
-```
+    WorkerTools.install(files, version);
+  ```
 
 * Intercept "fetch"
-    When your client sends "fetch" to server it will be intercepted and 
+
+  When your client sends "fetch" to server it will be intercepted and 
   checked is there access to server or not and gain data from server or from cache.
-  > For most projects this task will be same, but you always can rewrite it as you want
-```javascript
-  WorkerTools.interceptFecth(version);
-```
+  > For most projects this method will be enough to set up, but you always can write it as you want
+  ```javascript
+    WorkerTools.interceptFecth(version);
+  ```
 
 * Initialize db: 
-```javascript
-  const db = new Db('YourDataBase', 1);
-```
+
+  ```javascript
+    const db = new Db('YourDataBase', 1);
+  ```
 
 * Catch basic events:
-```javascript
-  db.onSuccess = event => {};
-  db.onUpgrade = event => {};
-  db.onError = event => {}
-```
+
+  ```javascript
+    db.onSuccess = event => {};
+    db.onUpgrade = event => {};
+    db.onError = event => {}
+  ```
 
 * Initialize your first object when db just created:
-    When your Database just created you need to initialize objects which you will 
+
+  When your Database just created you need to initialize objects which you will 
   use in future, you can do it at any time, but at the creation moment it will be the most valuable 
-```javascript
-  db.onUpgrade = event => {
-    const indexes = [{ indexName: 'YourIndex', keyPath: 'YourKeyPath', optionalParameters: { unique: false }}];
-    const randomNumbers = db.initializeObject('YourObject', { keyPath: 'YourKey'}, indexes);
-  };
-```
+  ```javascript
+    db.onUpgrade = event => {
+      const indexes = [{ indexName: 'YourIndex', keyPath: 'YourKeyPath', optionalParameters: { unique: false }}];
+      const randomNumbers = db.initializeObject('YourObject', { keyPath: 'YourKey'}, indexes);
+    };
+  ```
 
 * Choose how to track your data
   key Path | Key Generator | Description
@@ -109,44 +114,45 @@ Register service worker by it's path, so browser can detect which tasks your wor
 
 * Createing indexes: 
 
-<code>indexName</code> will define which name your index will have. <code>keyPath</code> will define by which property information will be found, <code>optionalParamters</code> defines some additional properties. 
-
-```javascript
-  const indexes = [
-    { indexName: 'key', keyPath: 'key', optionalParameters: { unique: false }},
-    { indexName: 'ssn', keyPath: 'ssn', optionalParameters: { unique: true }},
-  ];
-```
+  <code>indexName</code> will define which name your index will have. <code>keyPath</code> will define by which property information will be found, <code>optionalParamters</code> defines some additional properties. 
+  ```javascript
+    const indexes = [
+      { indexName: 'key', keyPath: 'key', optionalParameters: { unique: false }},
+      { indexName: 'ssn', keyPath: 'ssn', optionalParameters: { unique: true }},
+    ];
+  ```
 
 * Set | Get | Delete data from your object
 
-```javascript
-  db.setData('YourObject', { myKeyPath: 'Some unique key', myValue: 'Some value' });
-  db.getData('YourObject', 'Some unique key');
-  db.deleteData('YourObject', 'Some unique key');
-```
+  ```javascript
+    db.setData('YourObject', { myKeyPath: 'Some unique key', myValue: 'Some value' });
+    db.getData('YourObject', 'Some unique key');
+    db.deleteData('YourObject', 'Some unique key');
+  ```
 
 * Get data from cursor
+
   You can iterate through cursor and get data from it on each step 
-```javascript
-db.openCursor('').onSuccess = cursor => {
-    if (cursor) {
-      const value = cursor.value;
-      const key = cursor.key;
-      console.log(key, value);
-      cursor.continue();
+  ```javascript
+  db.openCursor('').onSuccess = cursor => {
+      if (cursor) {
+        const value = cursor.value;
+        const key = cursor.key;
+        console.log(key, value);
+        cursor.continue();
+      }
+      else {
+        console.log('no more entries');
+      }
     }
-    else {
-      console.log('no more entries');
-    }
-  }
-```
+  ```
 
 * Use additional methods to work much easier with your data:
+
   Useful methods which follow Map conception
-```javascript
-  db.has('YourObject', 'Some unique key');
-  db.keys('YourObject');
-  db.values('YourObject'); 
-  db.clearAll('YourObject')
-```
+  ```javascript
+    db.has('YourObject', 'Some unique key');
+    db.keys('YourObject');
+    db.values('YourObject'); 
+    db.clearAll('YourObject')
+  ```
