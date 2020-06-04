@@ -7,8 +7,8 @@ The current state of PWA is poor. Many problems, many flaws, not convenient synt
 https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 
 ## Commands 
-* Run tests <code>npm test</code>(linux) && <code>npm run win-test</code>(windows)
-* Run server <code>npm start</code>(linux) && <code>npm run win-start</code>(windows)
+* <code>npm start</code>(linux) && <code>npm run win-start</code>(windows) - Opens demonstration example
+* <code>npm test</code>(linux) && <code>npm run win-test</code>(windows) - Runs tests
 
 ## Usage
 
