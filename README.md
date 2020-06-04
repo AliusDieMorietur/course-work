@@ -3,11 +3,6 @@
 ## Concept
 The current state of PWA is poor. Many problems, many flaws, not convenient syntax, difficulties in launching a project. This library is designed to solve these problems, facilitate the process of creating PWA, reduce duplicate code, etc. Most methods are focused on indexeddb, since there are the most difficulties.
 
-## Requirements for PWA
-* http-server to serve static
-* manifest.json
-* icon pack
-
 ## Documentation
 https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 
@@ -38,6 +33,10 @@ https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 5. Run project with <code>node server.js</code> and stop with Ctrl+C
 6. Enjoy basic PWA experience!
 
+## Requirements for PWA
+* http-server to serve static
+* manifest.json
+* icon pack
 
 ## scv (optional)
 Helps to create PWA template
