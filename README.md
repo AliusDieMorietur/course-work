@@ -3,16 +3,6 @@
 ## Concept
 The current state of PWA is poor. Many problems, many flaws, not convenient syntax, difficulties in launching a project. This library is designed to solve these problems, facilitate the process of creating PWA, reduce duplicate code, etc. Most methods are focused on indexeddb, since there are the most difficulties.
 
-## Tasks
-- [x] Basic Tools for worker
-- [x] Basic methods for indexeddb
-- [x] Set of different methods for working with data inside indexeddb objects
-- [x] Support cursor
-- [x] Make basic tests
-- [ ] Make additional tests
-- [ ] Make additional methods for service workers
-- [ ] Make some changes in PWA creation process
-
 ## Requirements for PWA
 * http-server to serve static
 * manifest.json
@@ -32,7 +22,6 @@ https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 2. Run <code>node server.js</code> (prepared server) 
 3. Customize provided example
 4. Enjoy basic PWA experience!
----
 * Option 2
 1. Prepare directory and all files needed
 2. Copy <code>app-lib.js</code> and connect it in your html file before your client scripts
