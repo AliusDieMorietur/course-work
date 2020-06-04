@@ -7,8 +7,10 @@
   <code>static interceptFecth(version: String)</code> | Intercept fetch event, clone response and open when it is needed.
 
 ## Db
-  Fields | Desription 
-  ------ | ---------- 
+
+### Fields
+  Field | Desription 
+  ----- | ---------- 
   <code>name: String</code> | Holds DataBase name
   <code>version: Number</code> | Holds DataBase version
   <code>request: Object</code> | Reference to request object
@@ -16,8 +18,10 @@
   <code>onSuccess: event</code> | Success event 
   <code>onUpgrade: event</code> | Upgrade event
   <code>onError: event</code> | Error event
-  Methods | Desription 
-  ------- | ---------- 
+
+### Methods
+  Method | Desription 
+  ------ | ---------- 
   <code>Constructor(name: String, version: String)</code> | Initialize new database. 
   <code>onSuccess(func: (event: Object) => void)</code> | Event which will be triggered when database will be available.
   <code>onError(func: (event: Object) => void)</code> | Event which will be triggered when failed to get access to database.
