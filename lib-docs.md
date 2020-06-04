@@ -1,6 +1,6 @@
 # Documetation for lib
 ## WorkerTools
-  Small collection of methods to set up service worker.
+  Small collection of methods to set up service worker
 ### Methods
   Method | Description 
   ------ | ---------- 
@@ -93,17 +93,6 @@ checked is there access to server or not and gain data from server or from cache
   db.onError = event => {}
 ```
 
-* Initialize your first object when db just created:
-
-When your Database just created you need to initialize objects which you will 
-use in future, you can do it at any time, but at the creation moment it will be the most valuable 
-```javascript
-  db.onUpgrade = event => {
-    const indexes = [{ indexName: 'YourIndex', keyPath: 'YourKeyPath', optionalParameters: { unique: false }}];
-    const randomNumbers = db.initializeObject('YourObject', { keyPath: 'YourKey'}, indexes);
-  };
-```
-
 * Choose how to track your data
   key Path | Key Generator | Description
   -------- | ------------- | -----------
@@ -120,6 +109,17 @@ use in future, you can do it at any time, but at the creation moment it will be 
     { indexName: 'key', keyPath: 'key', optionalParameters: { unique: false }},
     { indexName: 'ssn', keyPath: 'ssn', optionalParameters: { unique: true }},
   ];
+```
+
+* Initialize your first object when db just created:
+
+When your Database just created you need to initialize objects which you will 
+use in future, you can do it at any time, but at the creation moment it will be the most valuable 
+```javascript
+  db.onUpgrade = event => {
+    const indexes = [{ indexName: 'YourIndex', keyPath: 'YourKeyPath', optionalParameters: { unique: false }}];
+    const randomNumbers = db.initializeObject('YourObject', { keyPath: 'YourKey'}, indexes);
+  };
 ```
 
 * Set | Get | Delete data from your object
