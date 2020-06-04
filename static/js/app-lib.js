@@ -160,8 +160,8 @@ class Db {
     return availability;
   }
 
-  openTransaction(name) {
-    return this.db.transaction(name);
+  openTransaction(name, type) {
+    return this.db.transaction([name], 'type');
   }
 
   getObject(name) {

@@ -29,7 +29,7 @@
   <code>onError(func: (event: Object) => void)</code> | Event which will be triggered when failed to get access to database.
   <code>onUpgrade(func: (event: Object) => void)</code> | Event which will be triggered on the start
   <code>initializeObject(name: String, storageMethod: Object, indexes: Array)</code> | Creates object where data will be stored.
-  <code>openTransaction(name: String)</code> | There are another way to access transaction but this is more convenient way.
+  <code>openTransaction(name: String, type: String)</code> | There are another way to access transaction but this is more convenient way.
   <code>setData(name: String, data: Any)</code> | Adds data to the object.
   <code>getData(name: String, key: Any) => Promise</code> | Gets data from the object.
   <code>deleteData(name: String, key: String)</code> | Deletes data from the object.
