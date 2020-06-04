@@ -2,7 +2,7 @@
 ## WorkerTools
   Methods | Desription 
   ------- | ---------- 
-  <code>static registerServiceWorker(path: String, log = true, errorFunction: (error) => void)(Optional)</code> | Register service worker by it's path, so browser can detect which tasks your worker should do.
+  <code>static registerServiceWorker(path: String, log = true, errorFunction: (error))</code> | Register service worker by it's path, so browser can detect which tasks your worker should do.
   <code>static install(files: Array, version: String)</code> | Add cache to the worker when it just installed.
   <code>static interceptFecth(version: String)</code> | Intercept fetch event, clone response and open when it is needed.
 
