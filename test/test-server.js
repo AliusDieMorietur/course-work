@@ -3,7 +3,7 @@
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
-const STATIC_PATH = path.join(process.cwd(), './');
+const STATIC_PATH = path.join(process.cwd(), './test/');
 
 const MIME_TYPES = {
   html: 'text/html; charset=UTF-8',

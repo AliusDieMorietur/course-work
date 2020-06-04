@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "start http://localhost:7000 && cd test && node test-server.js",
-    "start": "start http://localhost:8000 && cd server && node server.js"
+    "test": "google-chrome http://localhost:7000 && node ./test/test-server.js",
+    "start": "google-chrome http://localhost:8000 && node ./server/server.js",
+    "win-test": "start http://localhost:7000 && node ./test/test-server.js",
+    "win-start": "start http://localhost:8000 && node ./server/server.js"
   },
   "repository": {
     "type": "git",
