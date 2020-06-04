@@ -11,6 +11,7 @@ https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md
 * Run server <code>npm start</code>(linux) && <code>npm run win-start</code>(windows)
 
 ## Usage
+Full documentation [here](https://github.com/AliusDieMorietur/course-work/blob/master/lib-docs.md)
 ### Default
 * Option 1
 1. Fork or clone this [repository](https://github.com/AliusDieMorietur/course-work)
