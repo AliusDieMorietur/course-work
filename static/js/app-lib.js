@@ -123,11 +123,8 @@ class Db {
     const data = new Promise((resolve, reject) => {
       objectStore.get(key).onsuccess = event => {
         const result = event.srcElement.result;
-        if (result) {
-          resolve(result);
-        } else {
-          reject('no data');
-        }
+        if (result) resolve(result);
+        else reject('no data');
       };
     });
     return data;
@@ -151,11 +148,8 @@ class Db {
       try {
         objectStore.get(key).onsuccess = event => {
           const result = event.srcElement.result;
-          if (result) {
-            resolve(true);
-          } else {
-            resolve(false);
-          }
+          if (result) resolve(true);
+          else resolve(false);
         };
       } catch (error) {
         reject(error);
@@ -229,7 +223,7 @@ class Db {
   async values(name) {
     const keys = await this.keys(name);
     const result = [];
-    for await (const key of keys) {
+    for (const key of keys) {
       const data = await this.getData(name, key);
       result.push(data);
     }
