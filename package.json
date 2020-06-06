@@ -1,0 +1,27 @@
+{
+  "name": "course-work",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "google-chrome http://localhost:7000 && node ./test/test-server.js",
+    "start": "google-chrome http://localhost:8000 && node ./server/server.js",
+    "win-test": "start http://localhost:7000 && node ./test/test-server.js",
+    "win-start": "start http://localhost:8000 && node ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliusDieMorietur/course-work.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AliusDieMorietur/course-work/issues"
+  },
+  "homepage": "https://github.com/AliusDieMorietur/course-work#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0"
+  }
+}

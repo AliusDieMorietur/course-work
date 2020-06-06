@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html 
+lang="en">
+<head>
+  <title>PWA</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="shortcut icon" href="./assets/greek.ico" type="image/vnd.microsoft.icon">
+  <link rel="icon" href="./assets/greek.ico" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <h2>Get your random number</h2>
+    <ul>
+      <li><label for="">Min: </label><input type="text" value="1" id="min"></li>
+      <li><label for="">Max: </label><input type="text" value="100" id="max"></li>
+    </ul>
+    <button id="get">Get</button>
+    <button id="deleteAll">Clear Database</button>
+    <label for="" id="view">Your number: </label>
+    <label for="" id="nums">Numbers from indexedDb: </label>
+    <ul id="numbers">
+    </ul>
+  </div>
+  <script src="./js/app-lib.js"></script>
+  <script src="./js/client.js"></script>
+</body>
+</html>

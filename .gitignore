@@ -1,0 +1,7 @@
+node_modules
+api
+scv
+dead
+package-lock.json
+static/js/api-client.js
+server/api-server.js
