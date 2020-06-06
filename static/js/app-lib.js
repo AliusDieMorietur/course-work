@@ -74,7 +74,7 @@ class Db {
   }
 
   deleteDatabase(name) {
-    window.indexedDB.deleteDatabase(name).onsuccess = event => {
+    window.indexedDB.deleteDatabase(name).onsuccess = () => {
       delete this;
     };
   }
@@ -148,20 +148,24 @@ class Db {
   has(name, key) {
     const objectStore = this.getObject(name);
     const availability = new Promise((resolve, reject) => {
-      objectStore.get(key).onsuccess = event => {
-        const result = event.srcElement.result;
-        if (result) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      };
+      try {
+        objectStore.get(key).onsuccess = event => {
+          const result = event.srcElement.result;
+          if (result) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        };
+      } catch (error) {
+        reject(error);
+      }
     });
     return availability;
   }
 
   openTransaction(name, type) {
-    return this.db.transaction([name], 'type');
+    return this.db.transaction([name], type);
   }
 
   getObject(name) {
@@ -211,9 +215,13 @@ class Db {
   keys(name) {
     const objectStore = this.getObject(name);
     const keys = new Promise((resolve, reject) => {
-      objectStore.getAllKeys().onsuccess = event => {
-        resolve(event.srcElement.result);
-      };
+      try {
+        objectStore.getAllKeys().onsuccess = event => {
+          resolve(event.srcElement.result);
+        };
+      } catch (error) {
+        reject(error);
+      }
     });
     return keys;
   }
